@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Page</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9fafb;
+      color: #111827;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #2563eb;
+      margin-top: 0;
+    }
+    .status {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      background-color: #ecfdf5;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    pre {
+      background-color: #f3f4f6;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Debug Page</h1>
+    <div class="status">
+      <p>If you can see this page, your browser is working correctly.</p>
+    </div>
+    
+    <h2>Browser Information</h2>
+    <pre id="browser-info"></pre>
+    
+    <h2>Test Firebase</h2>
+    <p>Click the button below to test your Firebase configuration:</p>
+    <button id="test-firebase">Test Firebase</button>
+    <div id="firebase-result" style="margin-top: 1rem;"></div>
+    
+    <script>
+      // Display browser information
+      const browserInfo = document.getElementById('browser-info');
+      browserInfo.textContent = JSON.stringify({
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        cookiesEnabled: navigator.cookieEnabled,
+        platform: navigator.platform,
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height,
+        windowWidth: window.innerWidth,
+        windowHeight: window.innerHeight
+      }, null, 2);
+      
+      // Event listener for test button (will not work without loading Firebase SDK)
+      document.getElementById('test-firebase').addEventListener('click', function() {
+        const result = document.getElementById('firebase-result');
+        result.innerHTML = '<p>Firebase SDK not loaded in this simple debug page. Please check the browser console for errors in the main application.</p>';
+      });
+    </script>
+  </div>
+</body>
+</html> 
